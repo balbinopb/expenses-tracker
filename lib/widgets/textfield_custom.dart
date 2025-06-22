@@ -11,7 +11,7 @@ class TextfieldCustom extends StatelessWidget {
 
   const TextfieldCustom({super.key,
     required this.labelText,
-    this.controller,
+    required this.controller,
     this.obscureText = false,
     this.suffixIcon,
     this.keyboardType = TextInputType.text,

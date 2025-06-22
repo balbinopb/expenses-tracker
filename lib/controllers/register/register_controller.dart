@@ -1,4 +1,4 @@
-import 'package:expenses_tracker/screens/login_screen.dart';
+import 'package:expenses_tracker/screens/login/login_screen.dart';
 import 'package:expenses_tracker/services/auth_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -18,22 +18,35 @@ class RegisterController extends GetxController {
   Future<void> register() async {
     final name = fullNameController.text.trim();
     final email = emailController.text.trim();
-    final password = passwordController.text.trim();
+    final pw = passwordController.text.trim();
 
-    if (name.isEmpty || email.isEmpty || password.isEmpty) {
-      Get.snackbar("Error", "Please fill in all fields");
+    if (name.isEmpty) {
+      Get.snackbar("error", "please fill name field");
       return;
     }
 
+    if (email.isEmpty) {
+      Get.snackbar("error", "please fill email field");
+      return;
+    } else if (!email.endsWith("@gmail.com")) {
+      Get.snackbar("error", "please enter an email");
+      return;
+    }
+    if (pw.isEmpty) {
+      Get.snackbar("error", "please fill password field");
+      return;
+    }
     try {
-      final user = await _authService.register(name, email, password);
+      final user = await _authService.register(name, email, pw);
 
       if (user != null) {
         Get.snackbar("Success", "Account registered!");
+        print("UNTIL HERE REGISTER?");
         Get.to(() => LoginScreen());
       }
     } catch (e) {
       Get.snackbar("Register Failed", e.toString());
+      // print(e);
     }
   }
 

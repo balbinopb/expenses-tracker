@@ -1,5 +1,5 @@
 import 'package:expenses_tracker/controllers/login/login_controller.dart';
-import 'package:expenses_tracker/screens/register_screen.dart';
+import 'package:expenses_tracker/screens/register/register_screen.dart';
 import 'package:expenses_tracker/widgets/button_custom.dart';
 import 'package:expenses_tracker/widgets/textfield_custom.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class LoginScreen extends GetView<LoginController> {
       body: SafeArea(
         child: Center(
           child: Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding:  EdgeInsets.all(18.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -47,7 +47,7 @@ class LoginScreen extends GetView<LoginController> {
                   ),
                 ),
                 SizedBox(height: distance),
-                ButtonCustom(text: "Login", onPressed: () {}),
+                ButtonCustom(text: "Login", onPressed: controller.login),
                 SizedBox(height: distance),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -55,12 +55,7 @@ class LoginScreen extends GetView<LoginController> {
                     Text("Don't have an account? "),
                     InkWell(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => RegisterScreen(),
-                          ),
-                        );
+                        Get.to(() => RegisterScreen());
                       },
                       child: Text("Register"),
                     ),
