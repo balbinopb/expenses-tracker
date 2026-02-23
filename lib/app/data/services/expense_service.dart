@@ -46,6 +46,4 @@ class ExpenseService {
         .doc(expenseId)
         .delete();
   }
-
-
 }

@@ -54,6 +54,10 @@ class HomeController extends GetxController {
           time: DateTime.now(),
         );
         await _expenseService.updateExpense(userId, updatedWithId);
+
+        titleController.clear();
+        amountController.clear();
+        categoryController.clear();
         Get.back();
       },
     );
