@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,7 +6,7 @@ import '../../../data/services/expense_service.dart';
 
 class ExpenseList extends StatelessWidget {
   final String userId;
-  final void Function(ExpenseModel) onEdit;
+  final void Function(BuildContext, ExpenseModel) onEdit;
 
   ExpenseList({super.key, required this.userId, required this.onEdit});
 
@@ -48,7 +46,7 @@ class ExpenseList extends StatelessWidget {
                   children: [
                     IconButton(
                       icon: const Icon(Icons.edit, color: Colors.orange),
-                      onPressed: () => onEdit(expense),
+                      onPressed: () => onEdit(context, expense),
                     ),
                     IconButton(
                       icon: const Icon(Icons.delete, color: Colors.red),

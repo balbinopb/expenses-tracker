@@ -61,8 +61,18 @@ class LoginController extends GetxController {
         password: passwordC.text.trim(),
       );
 
+      // show loading
+      showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (_) => Center(
+          child: Lottie.asset('assets/lottie/success.json', width: 120),
+        ),
+      );
+
+      await Future.delayed(Duration(seconds: 2));
+
       Get.offAndToNamed(Routes.HOME);
-      Get.back();
     } on FirebaseAuthException catch (e) {
       Get.back();
       // print("--------------${e.message}-------------------------");

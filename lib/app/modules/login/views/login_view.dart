@@ -43,6 +43,8 @@ class LoginView extends GetView<LoginController> {
                   ),
                   TextButton(
                     onPressed: () {
+                      controller.emailC.clear();
+                      controller.passwordC.clear();
                       Get.toNamed(Routes.REGISTER);
                     },
                     child: const Text(
