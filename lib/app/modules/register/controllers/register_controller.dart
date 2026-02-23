@@ -69,7 +69,7 @@ class RegisterController extends GetxController {
       // print("---------------success------------");
 
       Get.back(); // close loading
-      Get.offAllNamed(Routes.HOME);
+      Get.offAllNamed(Routes.LOGIN);
     } on FirebaseAuthException catch (e) {
       Get.back(); //to ensure the dialog closed
 
