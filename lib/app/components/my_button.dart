@@ -23,7 +23,7 @@ class MyButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(14),
           boxShadow: [
             BoxShadow(
-              color: AppColor.primary.withOpacity(0.3),
+              color: AppColor.primary.withValues(alpha:0.3),
               blurRadius: 12,
               offset: const Offset(0, 6),
             ),
