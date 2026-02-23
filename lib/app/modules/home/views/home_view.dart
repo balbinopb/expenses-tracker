@@ -7,7 +7,7 @@ import 'expense_list.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
-  static const primaryColor = Color(0xFF16A34A); 
+  static const primaryColor = Color(0xFF16A34A);
   static const backgroundColor = Color(0xFFF8FAFC);
 
   @override
@@ -46,10 +46,7 @@ class HomeView extends GetView<HomeController> {
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
               gradient: const LinearGradient(
-                colors: [
-                  Color(0xFF16A34A),
-                  Color(0xFF22C55E),
-                ],
+                colors: [Color(0xFF16A34A), Color(0xFF22C55E)],
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
               ),
@@ -57,22 +54,35 @@ class HomeView extends GetView<HomeController> {
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: [
                 Text(
                   "Total Expenses",
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 14,
-                  ),
+                  style: TextStyle(color: Colors.white70, fontSize: 14),
                 ),
                 SizedBox(height: 6),
-                Text(
-                  "\$0.00",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26,
-                    fontWeight: FontWeight.bold,
-                  ),
+                StreamBuilder<double>(
+                  stream: controller.totalExpenses(),
+                  builder: (context, totalData) {
+                    if (!totalData.hasData) {
+                      return const Text(
+                        "\$0.00",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      );
+                    }
+
+                    return Text(
+                      "\$${totalData.data!.toStringAsFixed(2)}",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    );
+                  },
                 ),
               ],
             ),

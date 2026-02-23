@@ -30,6 +30,8 @@ class ExpenseService {
   }
 
   Future<void> updateExpense(String userId, ExpenseModel expense) async {
+    // print("test=======working===================");
+
     await _usersCollection
         .doc(userId)
         .collection('expenses')
@@ -44,4 +46,6 @@ class ExpenseService {
         .doc(expenseId)
         .delete();
   }
+
+
 }

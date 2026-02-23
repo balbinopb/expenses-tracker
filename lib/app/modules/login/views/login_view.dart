@@ -25,7 +25,7 @@ class LoginView extends GetView<LoginController> {
                 height: 90,
                 width: 90,
                 decoration: BoxDecoration(
-                  color: AppColor.primary.withValues(alpha:0.1),
+                  color: AppColor.primary.withValues(alpha: 0.1),
                   shape: BoxShape.circle,
                 ),
                 child: const Icon(

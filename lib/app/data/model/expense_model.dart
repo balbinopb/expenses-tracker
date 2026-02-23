@@ -32,7 +32,7 @@ class ExpenseModel {
   factory ExpenseModel.fromDocumentSnapshot(DocumentSnapshot doc) {
     final data = doc.data() as Map<String, dynamic>;
     return ExpenseModel(
-      id: data['id'] ?? doc.id,
+      id: doc.id,
       title: data['title'] ?? '',
       category: data['category'] ?? '',
       amount: (data['amount'] ?? 0).toDouble(),
