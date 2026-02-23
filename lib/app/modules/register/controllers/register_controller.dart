@@ -69,6 +69,7 @@ class RegisterController extends GetxController {
       // print("---------------success------------");
 
       Get.back(); // close loading
+      clearField();
       Get.toNamed(Routes.LOGIN);
     } on FirebaseAuthException catch (e) {
       Get.back(); //to ensure the dialog closed
@@ -77,6 +78,13 @@ class RegisterController extends GetxController {
     } finally {
       isLoading.value = false;
     }
+  }
+
+  void clearField() {
+    nameC.clear();
+    emailC.clear();
+    passwordC.clear();
+    confirmPasswordC.clear();
   }
 
   void showError(String message) {

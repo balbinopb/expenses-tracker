@@ -6,10 +6,12 @@ class ExpenseService {
       .collection('users');
 
   Future<void> addExpense(String userId, ExpenseModel expense) async {
-    await _usersCollection
+    final docRef = await _usersCollection
         .doc(userId)
         .collection('expenses')
         .add(expense.toMap());
+
+    await docRef.update({'id': docRef.id});
   }
 
   Stream<List<ExpenseModel>> getExpenses(String userId) {

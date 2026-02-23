@@ -1,3 +1,4 @@
+import 'package:expenses_tracker/app/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class LoginView extends GetView<LoginController> {
               Icon(
                 Icons.account_balance_wallet,
                 size: 80,
-                color: Theme.of(context).colorScheme.primary,
+                color: AppColor.primary
               ),
               const SizedBox(height: 20),
               MyTextField(hintText: "Email", controller: controller.emailC),
@@ -43,13 +44,12 @@ class LoginView extends GetView<LoginController> {
                   ),
                   TextButton(
                     onPressed: () {
-                      controller.emailC.clear();
-                      controller.passwordC.clear();
+                      controller.clearField();
                       Get.toNamed(Routes.REGISTER);
                     },
                     child: const Text(
                       "register",
-                      style: TextStyle(color: Colors.grey),
+                      style: TextStyle(color: Colors.grey,fontWeight: FontWeight.w500),
                     ),
                   ),
                 ],

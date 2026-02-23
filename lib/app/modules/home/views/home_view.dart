@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -8,24 +7,86 @@ import 'expense_list.dart';
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
+  static const primaryColor = Color(0xFF16A34A); 
+  static const backgroundColor = Color(0xFFF8FAFC);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: backgroundColor,
+
       appBar: AppBar(
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        backgroundColor: primaryColor,
+        centerTitle: true,
         title: const Text(
           "Expense Tracker",
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
         ),
-        centerTitle: true,
-        backgroundColor: Colors.blue,
       ),
+
       floatingActionButton: FloatingActionButton(
         onPressed: () => controller.showAddDialog(context),
-        backgroundColor: Colors.blue,
+        backgroundColor: primaryColor,
+        elevation: 4,
         shape: const CircleBorder(),
         child: const Icon(Icons.add, color: Colors.white),
       ),
-      body: ExpenseList(userId: controller.userId, onEdit: controller.showEditDialog),
+
+      body: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            margin: const EdgeInsets.all(16),
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFF16A34A),
+                  Color(0xFF22C55E),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  "Total Expenses",
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+                SizedBox(height: 6),
+                Text(
+                  "\$0.00",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          /// 🔹 Expense List
+          Expanded(
+            child: ExpenseList(
+              userId: controller.userId,
+              onEdit: controller.showEditDialog,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

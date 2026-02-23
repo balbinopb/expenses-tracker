@@ -90,6 +90,11 @@ class LoginController extends GetxController {
     }
   }
 
+  void clearField() {
+    emailC.clear();
+    passwordC.clear();
+  }
+
   // Future<void> logout() async {
   //   await _authService.logout();
   //   Get.offAllNamed(Routes.LOGIN);

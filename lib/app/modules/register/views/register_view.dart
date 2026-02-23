@@ -1,3 +1,4 @@
+import 'package:expenses_tracker/app/constants/app_color.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -21,7 +22,7 @@ class RegisterView extends GetView<RegisterController> {
               Icon(
                 Icons.account_balance_wallet,
                 size: 80,
-                color: Theme.of(context).colorScheme.primary,
+                color: AppColor.primary,
               ),
               const SizedBox(height: 20),
 
@@ -57,6 +58,7 @@ class RegisterView extends GetView<RegisterController> {
                   ),
                   TextButton(
                     onPressed: () {
+                      controller.clearField();
                       Get.toNamed(Routes.LOGIN);
                     },
                     child: Text("login", style: TextStyle(color: Colors.grey)),
