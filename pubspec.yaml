@@ -35,6 +35,7 @@ flutter:
 
   assets:
     - assets/
+    - assets/lottie/
   #   - images/a_dot_ham.jpeg
 
 

@@ -24,29 +24,17 @@ class LoginController extends GetxController {
     final password = passwordC.text.trim();
 
     if (email.isEmpty) {
-      Get.snackbar(
-        "Erro",
-        "Email seidauk prenxe",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showError("Email cannot be empty");
       return false;
     }
 
     if (!GetUtils.isEmail(email)) {
-      Get.snackbar(
-        "Erro",
-        "Email invalidu",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showError("Invalid email");
       return false;
     }
 
     if (password.isEmpty) {
-      Get.snackbar(
-        "Erro",
-        "Password seidauk prenxe",
-        snackPosition: SnackPosition.BOTTOM,
-      );
+      showError("Password cannot be empty");
       return false;
     }
 
@@ -55,10 +43,11 @@ class LoginController extends GetxController {
 
   Future<void> login(BuildContext context) async {
     if (!validation()) return;
+
     try {
       isLoading.value = true;
 
-      // loading animation
+      // show loading
       showDialog(
         context: context,
         barrierDismissible: false,
@@ -72,16 +61,18 @@ class LoginController extends GetxController {
         password: passwordC.text.trim(),
       );
 
-      // close loading
-      Get.back();
       Get.offAndToNamed(Routes.HOME);
-    } on FirebaseAuthException {
+    } on FirebaseAuthException catch (e) {
       Get.snackbar(
-        "Falha no Login",
-        "Ocorreu um erro",
+        "Login Failed",
+        e.message ?? "An error occurred",
+        backgroundColor: Colors.red.shade400,
         snackPosition: SnackPosition.BOTTOM,
       );
     } finally {
+      if (Get.isDialogOpen ?? false) {
+        Get.back(); // always close dialog
+      }
       isLoading.value = false;
     }
   }
@@ -90,6 +81,19 @@ class LoginController extends GetxController {
   //   await _authService.logout();
   //   Get.offAllNamed(Routes.LOGIN);
   // }
+
+  void showError(String message) {
+    Get.snackbar(
+      "Error",
+      message,
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: Colors.red.shade400,
+      colorText: Colors.white,
+      margin: const EdgeInsets.all(12),
+      borderRadius: 8,
+      duration: const Duration(seconds: 3),
+    );
+  }
 
   @override
   void onClose() {
