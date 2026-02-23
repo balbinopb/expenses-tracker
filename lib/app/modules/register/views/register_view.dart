@@ -1,8 +1,6 @@
 import 'package:expenses_tracker/app/constants/app_color.dart';
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
-
 import '../../../components/my_button.dart';
 import '../../../components/my_text_field.dart';
 import '../../../routes/app_pages.dart';
@@ -10,58 +8,113 @@ import '../controllers/register_controller.dart';
 
 class RegisterView extends GetView<RegisterController> {
   const RegisterView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.background,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                Icons.account_balance_wallet,
-                size: 80,
-                color: AppColor.primary,
-              ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 60),
 
-              MyTextField(hintText: "Name", controller: controller.nameC),
-              const SizedBox(height: 15),
-              MyTextField(hintText: "Email", controller: controller.emailC),
-              const SizedBox(height: 15),
+              // Logo Icon
+              Container(
+                height: 90,
+                width: 90,
+                decoration: BoxDecoration(
+                  color: AppColor.primary.withValues(alpha:0.1),
+                  shape: BoxShape.circle,
+                ),
+                child: const Icon(
+                  Icons.account_balance_wallet_rounded,
+                  size: 45,
+                  color: AppColor.primary,
+                ),
+              ),
+
+              const SizedBox(height: 24),
+
+              const Text(
+                "Create Account",
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: AppColor.textPrimary,
+                ),
+              ),
+
+              const SizedBox(height: 6),
+
+              const Text(
+                "Start tracking your expenses",
+                style: TextStyle(
+                  fontSize: 14,
+                  color: AppColor.textSecondary,
+                ),
+              ),
+
+              const SizedBox(height: 40),
+
+              MyTextField(
+                hintText: "Full Name",
+                controller: controller.nameC,
+              ),
+
+              const SizedBox(height: 18),
+
+              MyTextField(
+                hintText: "Email",
+                controller: controller.emailC,
+              ),
+
+              const SizedBox(height: 18),
+
               MyTextField(
                 hintText: "Password",
                 controller: controller.passwordC,
                 obscureText: true,
               ),
-              const SizedBox(height: 15),
+
+              const SizedBox(height: 18),
+
               MyTextField(
                 hintText: "Confirm Password",
                 controller: controller.confirmPasswordC,
                 obscureText: true,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: 30),
 
               MyButton(
                 text: "Register",
                 onTap: () => controller.register(context),
               ),
 
+              const SizedBox(height: 25),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
                     "Already have an account?",
-                    style: TextStyle(color: Colors.grey),
+                    style: TextStyle(color: AppColor.textSecondary),
                   ),
                   TextButton(
                     onPressed: () {
                       controller.clearField();
                       Get.toNamed(Routes.LOGIN);
                     },
-                    child: Text("login", style: TextStyle(color: Colors.grey)),
+                    child: const Text(
+                      "Login",
+                      style: TextStyle(
+                        color: AppColor.primary,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ],
               ),
