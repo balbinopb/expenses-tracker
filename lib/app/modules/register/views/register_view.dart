@@ -19,7 +19,7 @@ class RegisterView extends GetView<RegisterController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.school,
+                Icons.account_balance_wallet,
                 size: 80,
                 color: Theme.of(context).colorScheme.primary,
               ),

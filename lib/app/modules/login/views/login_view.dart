@@ -19,11 +19,10 @@ class LoginView extends GetView<LoginController> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
-                Icons.school,
+                Icons.account_balance_wallet,
                 size: 80,
                 color: Theme.of(context).colorScheme.primary,
               ),
-
               const SizedBox(height: 20),
               MyTextField(hintText: "Email", controller: controller.emailC),
               const SizedBox(height: 15),

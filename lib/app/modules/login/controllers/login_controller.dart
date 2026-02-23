@@ -62,7 +62,10 @@ class LoginController extends GetxController {
       );
 
       Get.offAndToNamed(Routes.HOME);
+      Get.back();
     } on FirebaseAuthException catch (e) {
+      Get.back();
+      // print("--------------${e.message}-------------------------");
       Get.snackbar(
         "Login Failed",
         e.message ?? "An error occurred",
